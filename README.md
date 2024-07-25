@@ -1,6 +1,3 @@
-Here's a description you can use for your GitHub repository:
-
----
 
 # CrazyMachine Golden Gears - Rebuild for Modern Android
 
