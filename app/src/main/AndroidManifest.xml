@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="2334118"
+    android:versionName="1.14"
+    android:installLocation="auto"
+    package="com.vivamedia.cmGGTHD">
+
+    <!-- Update SDK Versions -->
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="34"/>
+
+    <uses-feature
+        android:glEsVersion="0x20000"
+        android:required="true"/>
+    <uses-feature android:name="android.hardware.screen.landscape"/>
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-permission android:name="com.android.vending.CHECK_LICENSE"/>
+
+    <!-- GL Texture Compression -->
+    <supports-gl-texture
+        android:name="GL_EXT_texture_compression_dxt1"
+        android:required="true"/>
+    <supports-gl-texture
+        android:name="GL_IMG_texture_compression_pvrtc"
+        android:required="true"/>
+    <supports-gl-texture
+        android:name="GL_OES_compressed_ETC1_RGB8_texture"
+        android:required="true"/>
+
+    <!-- Screen Support -->
+    <supports-screens android:smallScreens="false"/>
+    <supports-screens android:normalScreens="true"/>
+    <supports-screens android:largeScreens="true"/>
+    <supports-screens android:xlargeScreens="true"/>
+
+    <application
+        android:theme="@style/AppTheme"
+        android:label="@string/app_name"
+        android:icon="@drawable/icon"
+        android:hasCode="true"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true">
+
+        <!-- Splash Activity -->
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/app_name"
+            android:name="com.vivamedia.CMTablet.SplashActivity"
+            android:screenOrientation="landscape"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Main Activity -->
+        <activity
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:label="@string/app_name"
+            android:name="com.vivamedia.CMTablet.MainActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="screenSize|orientation"
+            android:exported="true"/>
+
+        <!-- Ad Activity -->
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="smallestScreenSize|screenSize|uiMode|screenLayout|orientation|keyboardHidden|keyboard"
+            android:exported="true"/>
+
+        <!-- Billing Service -->
+        <service
+            android:name="com.vivamedia.CMTablet.GoogleBillingService"
+            android:exported="true"/>
+
+        <!-- Billing Receiver -->
+        <receiver
+            android:name="com.vivamedia.CMTablet.GoogleBillingReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.billing.IN_APP_NOTIFY"/>
+                <action android:name="com.android.vending.billing.RESPONSE_CODE"/>
+                <action android:name="com.android.vending.billing.PURCHASE_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>
